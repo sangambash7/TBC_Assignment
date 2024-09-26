@@ -1,0 +1,23 @@
+footer {
+  background-color: rgb(247, 232, 213);
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+footer p {
+  align-self: center;
+}
+
+.footer-menu ul {
+  list-style-type: none;
+}
+
+.footer-nav-item {
+  color: rgba(25, 11, 219, 0.932);
+  cursor: pointer;
+}
+
+.footer-nav-item:hover {
+  color: rgb(14, 185, 65);
+}
