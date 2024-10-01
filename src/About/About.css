@@ -1,0 +1,16 @@
+.about {
+  padding-top: 20px;
+  display: grid;
+  justify-items: center;
+}
+
+.about-box {
+  background-color: rgb(215, 168, 107);
+  margin: 10px;
+  padding: 5px;
+  border-radius: 15px;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

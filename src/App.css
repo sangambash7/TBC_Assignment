@@ -7,3 +7,11 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+main {
+  background-color: rgb(250, 206, 149);
+}
+
+.font-bold {
+  font-weight: bold;
+}

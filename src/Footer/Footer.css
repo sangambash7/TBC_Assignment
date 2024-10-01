@@ -16,6 +16,7 @@ footer p {
 .footer-nav-item {
   color: rgba(25, 11, 219, 0.932);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .footer-nav-item:hover {
