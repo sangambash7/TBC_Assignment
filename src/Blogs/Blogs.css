@@ -1,0 +1,27 @@
+.blogs {
+  display: grid;
+  padding: 15px;
+}
+
+.blogs ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  align-items: start;
+}
+
+.blogs ul li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+  text-align: start;
+  cursor: pointer;
+}
+
+.blogs-date {
+  color: grey;
+  font-style: italic;
+}
