@@ -1,0 +1,35 @@
+.profile-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+.profile-box {
+  margin: 10px;
+}
+
+.profile img {
+  border-radius: 20px;
+}
+
+.profile-name {
+  font-size: 20px;
+}
+
+.profile-proffession,
+.profile-email {
+  font-size: 13px;
+}
+
+.profile-interests {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-product {
+  border: 1px solid grey;
+  margin-top: 5px;
+  width: 300px;
+}

@@ -6,6 +6,7 @@ import Contact from "./Contact/Contact.js";
 import About from "./About/About.js";
 import Footer from "./Footer/Footer.js";
 import Blogs from "./Blogs/Blogs.js";
+import Profile from "./Profile/Profile.js";
 import Assignment3 from "./Assignment-3/Assignment-3.js";
 
 import "./App.css";
@@ -19,8 +20,9 @@ function App() {
           <Route path="/" element={<Content />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/Assignment-3" element={<Assignment3 />} />
           <Route path="/Blogs" element={<Blogs />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Assignment-3" element={<Assignment3 />} />
         </Routes>
         <Footer />
       </div>
