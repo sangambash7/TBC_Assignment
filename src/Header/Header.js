@@ -23,6 +23,18 @@ export default function Header() {
             Contact
           </Link>
         </li>
+        <li>
+          {" "}
+          <Link className="nav-item" to="/Blogs">
+            Blogs
+          </Link>
+        </li>
+        <li>
+          {" "}
+          <Link className="nav-item" to="/Profile">
+            My Profile
+          </Link>
+        </li>
       </ul>
     </header>
   );
