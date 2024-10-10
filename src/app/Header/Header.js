@@ -24,6 +24,12 @@ export default function Header() {
         </li>
         <li>
           {" "}
+          <Link className="nav-item" href="/Products">
+            Products
+          </Link>
+        </li>
+        <li>
+          {" "}
           <Link className="nav-item" href="/Blogs">
             Blogs
           </Link>

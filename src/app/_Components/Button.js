@@ -1,3 +1,3 @@
-export default function Button() {
-  return <button className="product-btn">Add To Cart</button>;
+export default function Button({ text }) {
+  return <button className="product-btn">{text}</button>;
 }
