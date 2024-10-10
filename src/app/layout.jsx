@@ -1,15 +1,19 @@
-import "../index.css";
-
-export const metadata = {
-  title: "TBC Assignment",
-  description: "TBC Assignment.",
-};
+"use client";
+import "./global.css";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div id="root">{children}</div>
+        <div id="root">
+          <div className="application">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

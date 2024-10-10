@@ -1,7 +1,6 @@
-import "./Content.css";
-import Product from "./Product";
+import Product from "./_Components/Product";
 
-export default function Footer() {
+function App() {
   return (
     <main>
       <h2>Photo Cameras</h2>
@@ -25,3 +24,5 @@ export default function Footer() {
     </main>
   );
 }
+
+export default App;

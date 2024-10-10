@@ -1,4 +1,15 @@
+.application {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 main {
+  background-color: rgb(250, 206, 149);
   flex: 1;
 }
 
@@ -6,7 +17,11 @@ main h2 {
   margin: 30px 0;
 }
 
-/* Products Styling */
+.font-bold {
+  font-weight: bold;
+}
+
+/* Home Page Styling */
 .products-container {
   display: grid;
   grid-template-columns: auto auto auto;
