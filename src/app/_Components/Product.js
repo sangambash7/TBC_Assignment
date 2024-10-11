@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Link from "next/link";
 
 export default function Product({ id, title, description, image, price }) {
   return (
@@ -14,7 +15,9 @@ export default function Product({ id, title, description, image, price }) {
           {(price - price * 0.1903).toFixed(2)} {" $"}{" "}
         </span>
       </div>
-      <Button text="Click To See Details" />
+      <Link href={`./Products/${id}`}>
+        <Button text="Click To See Details" />
+      </Link>
     </li>
   );
 }

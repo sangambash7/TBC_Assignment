@@ -16,7 +16,6 @@ export default function Products() {
     const getProductsList = async function () {
       const products = await getProducts();
       setProductList(products);
-      console.log(products);
     };
 
     getProductsList();
