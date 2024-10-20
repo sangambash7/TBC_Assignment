@@ -1,74 +1,58 @@
-"use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import "./Products.css";
+import SearchProducts from "../_Components/SearchProducts";
+import SortingProducts from "../_Components/SortingProducts";
 import Product from "../_Components/Product";
 
-export default function Products() {
-  const [productList, setProductList] = useState([]);
-
-  const getProducts = async function () {
-    const response = await fetch("https://dummyjson.com/products");
+export default async function Products({ searchParams }) {
+  const getProducts = async function (search) {
+    const url = `https://dummyjson.com/products/search${
+      !search ? "" : `?q=${search}`
+    }`;
+    const response = await fetch(url);
     const data = await response.json();
+    console.log(url);
     return data.products;
   };
 
-  const sortProducts = async function (sortBy, order) {
-    const response = await fetch(
-      `https://dummyjson.com/products?sortBy=${sortBy}&order=${order}`
-    );
-    const data = await response.json();
-    setProductList(data.products);
-  };
+  const search = searchParams.q || "";
+  console.log("Search Query: ", search);
 
-  const searchProducts = async function (text) {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${text}`
-    );
-    const data = await response.json();
-    setProductList(data.products);
-  };
+  const productList = await getProducts(search);
 
-  const debounceSearchProducts = debouncerFunction(searchProducts, 1000);
+  // const sortProducts = async function (sortBy, order) {
+  //   const response = await fetch(
+  //     `https://dummyjson.com/products?sortBy=${sortBy}&order=${order}`
+  //   );
+  //   const data = await response.json();
+  //   setProductList(data.products);
+  // };
 
-  function debouncerFunction(fun, delay) {
-    let timeOutTime;
+  // const debounceSearchProducts = debouncerFunction(searchProducts, 1000);
 
-    return function (...args) {
-      clearTimeout(timeOutTime);
+  // function debouncerFunction(fun, delay) {
+  //   let timeOutTime;
 
-      timeOutTime = setTimeout(() => {
-        fun.apply(this, args);
-      }, delay);
-    };
-  }
+  //   return function (...args) {
+  //     clearTimeout(timeOutTime);
 
-  useEffect(() => {
-    const getProductsList = async function () {
-      const products = await getProducts();
-      setProductList(products);
-    };
-
-    getProductsList();
-  }, []);
+  //     timeOutTime = setTimeout(() => {
+  //       fun.apply(this, args);
+  //     }, delay);
+  //   };
+  // }
 
   return (
     <main className="products">
       <div className="products-header">
         <h1>List Of Products</h1>
 
-        <div className="products-search">
-          <input
-            type="text"
-            id="search"
-            name="search"
-            onChange={(e) => debounceSearchProducts(e.target.value)}
-            placeholder="Search"
-          />
-        </div>
+        <SearchProducts />
 
-        <div className="products-sorting">
+        <SortingProducts initialProductList={productList} />
+
+        {/* <div className="products-sorting">
           <h3>Sort</h3>
 
           <select
@@ -86,7 +70,7 @@ export default function Products() {
             <option value={"price-asc"}>Sort By Price Asc</option>
             <option value={"price-desc"}>Sort By Price Desc</option>
           </select>
-        </div>
+        </div> */}
       </div>
 
       <ul className="products-list">

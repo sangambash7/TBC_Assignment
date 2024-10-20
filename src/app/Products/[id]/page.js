@@ -1,34 +1,25 @@
-"use client";
 import "../Products.css";
 import Button from "../../_Components/Button";
 
-import { useState, useEffect } from "react";
-
-export default function ProductPage({ params }) {
-  const id = params.id;
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [productData, setProductData] = useState([]);
-
-  useEffect(() => {
-    async function getProductById(id) {
-      const response = await fetch(`https://dummyjson.com/products/${id}`);
-      const data = await response.json();
-      setProductData(data);
-      setIsLoaded(true);
-    }
-
-    getProductById(id);
-  }, []);
-
-  if (!isLoaded) {
-    return <h1>Page Loading...</h1>;
+async function fetchProductPage(id) {
+  const response = await fetch(`https://dummyjson.com/products/${id}`);
+  const data = await response.json();
+  console.log(response);
+  if (!response.ok) {
+    return null;
+  } else {
+    return data;
   }
+}
+
+export default async function ProductPage({ params }) {
+  const id = params.id;
+
+  const productData = await fetchProductPage(id);
 
   if (!productData) {
     return <h1>Sorry! The Page Was Not Found!</h1>;
-  }
-
-  if (isLoaded) {
+  } else {
     return (
       <main className="products-page">
         <h1>{productData.title}</h1>
