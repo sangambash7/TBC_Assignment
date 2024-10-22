@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { getCurrentAuthUser } from '../_Services/authService';
+import Image from 'next/image';
 import './Profile.css';
 
 const Profile = () => {
@@ -31,15 +32,22 @@ const Profile = () => {
 
   return (
     <main id="prof">
-      <h1>Profile Page</h1>
-      <h2>User Information</h2>
-      <p>
-        <strong>Username:</strong> {user.username}
-      </p>
-      <p>
-        <strong>Email:</strong> {user.email}
-      </p>
-      {/* Render more user information as needed */}
+      <div className="profile-header">
+        <div className="avatar-cont">
+          {user.image && (
+            <Image
+              src={user.image}
+              alt="User Profile Avatar"
+              width={64}
+              height={64}
+              className="profile-avatar"
+            />
+          )}
+          <p>{user.firstName}</p>
+          <p>{user.lastName}</p>
+        </div>
+        <h1>Profile Page</h1>
+      </div>
     </main>
   );
 };
