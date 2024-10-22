@@ -41,7 +41,11 @@ export async function getCurrentAuthUser() {
   }
 
   const data = await response.json();
-
-  console.log("Printed from getCurrentAuthUser function", response, data);
   return data;
+}
+
+export async function checkisIsAuthenticated() {
+  const check = getCookie("token");
+  if (check) return true;
+  return false;
 }

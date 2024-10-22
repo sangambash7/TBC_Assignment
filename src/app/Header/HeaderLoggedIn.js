@@ -9,7 +9,6 @@ export default function HeaderLoggedIn() {
   useEffect(() => {
     const fetchUserData = async () => {
       const data = await getCurrentAuthUser();
-      console.log("Printed from HeaderLoggedIn", data);
       setUserData(data);
     };
     fetchUserData();
@@ -18,6 +17,7 @@ export default function HeaderLoggedIn() {
   function handleLogout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
     setUserData(null);
+    window.location.href = "/Login";
   }
 
   if (userData) {

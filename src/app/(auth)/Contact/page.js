@@ -11,15 +11,15 @@ export default function Contact() {
       <div className="contact-form">
         <h2>ჩვენთან დაკავშირება</h2>
         <form>
-          <label for="fname">სახელი და გვარი</label>
+          <label htmlFor="fname">სახელი და გვარი</label>
           <br />
           <input type="text" id="fname" name="fname" />
           <br />
-          <label for="lname">ელექტრონული ფოსტა:</label>
+          <label htmlFor="lname">ელექტრონული ფოსტა:</label>
           <br />
           <input type="email" id="lemail" name="lemail" />
           <br />
-          <label for="lname">ტექსტი:</label>
+          <label htmlFor="lname">ტექსტი:</label>
           <br />
           <textarea></textarea>
           <br />
