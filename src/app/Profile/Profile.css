@@ -1,3 +1,9 @@
+:root {
+  --main-color: #face95;
+  --secondary-color: #f7e8d5;
+  --text-color: #171219;
+  --accent: #9d5c63;
+}
 .profile-container {
   display: flex;
   gap: 50px;
@@ -53,4 +59,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#profile-page {
+  padding: 48px;
+}
+.prof-header-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--secondary-color);
+  width: fit-content;
+  padding-inline: 24px;
+  border-radius: 12px;
+  box-shadow: 2px 1px 8px var(--accent);
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  color: var(--text-color);
+}
+.F-name {
+  font-size: 32px;
+}
+.L-name {
+  font-size: 20px;
 }

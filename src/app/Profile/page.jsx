@@ -31,22 +31,23 @@ const Profile = () => {
   }
 
   return (
-    <main id="prof">
-      <div className="profile-header">
-        <div className="avatar-cont">
+    <main id="profile-page">
+      <div className="prof-header-cont">
+        <div className="profile-header">
           {user.image && (
             <Image
               src={user.image}
               alt="User Profile Avatar"
-              width={64}
-              height={64}
+              width={72}
+              height={72}
               className="profile-avatar"
             />
           )}
-          <p>{user.firstName}</p>
-          <p>{user.lastName}</p>
+          <div className="header-text">
+            <p className="F-name">{user.firstName}</p>
+            <p className="L-name">{user.lastName}</p>
+          </div>
         </div>
-        <h1>Profile Page</h1>
       </div>
     </main>
   );
