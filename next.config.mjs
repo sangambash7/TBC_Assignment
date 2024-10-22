@@ -3,7 +3,14 @@ const nextConfig = {
   // output: "export", // Outputs a Single-Page Application (SPA).
   distDir: './dist', // Changes the build output directory to `./dist/`.
   images: {
-    domains: ['dummyjson.com'], // Allow images from dummyjson.com
+    remotePatterns: [
+      {
+        // Allow images from dummyjson.com
+        protocol: 'https',
+        hostname: 'dummyjson.com',
+        pathname: '/**', // Allows all paths under dummyjson.com
+      },
+    ],
   },
 };
 
