@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getCurrentAuthUser } from '../_Services/authService';
 import Image from 'next/image';
 import './Profile.css';
-
+import Link from 'next/link';
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,6 +47,38 @@ const Profile = () => {
             <p className="F-name">{user.firstName}</p>
             <p className="L-name">{user.lastName}</p>
           </div>
+        </div>
+      </div>
+      <div className="grid-cont">
+        <div className="personal-info grid-item">
+          <h6>{user.username}</h6>
+          <p className="age">
+            <span>Age:</span> {user.age}{' '}
+          </p>
+          <p className="address">
+            <span>Address: </span>
+            {user.address.country}/{user.address.address}
+          </p>
+        </div>
+        <div className="education  grid-item">
+          <h6>Education</h6>
+          <p className="uni">{user.university}</p>
+        </div>
+        <div className="workplace  grid-item">
+          <h6>Workplace</h6>
+          <p className="company">{user.company.name} </p>
+          <p className="comp-title">{user.company.title}</p>
+        </div>
+        <div className="contacts  grid-item">
+          <h6>Contact info</h6>
+          <p className="mail">
+            <span>mail:</span>
+            <Link href={`mailto:${user.email}`}>{user.email}</Link>
+          </p>
+          <p className="phone">
+            <span>phone:</span>
+            <Link href={`tel:${user.phone}`}>{user.phone}</Link>
+          </p>
         </div>
       </div>
     </main>
