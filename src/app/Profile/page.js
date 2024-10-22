@@ -1,28 +1,47 @@
-import "./Profile.css";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { getCurrentAuthUser } from '../_Services/authService';
+import './Profile.css';
 
-export default function Profile() {
+const Profile = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await getCurrentAuthUser();
+      setUser(userData);
+      setLoading(false);
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (loading) {
+    return (
+      <main id="prof">
+        <div className="loader"></div>
+      </main>
+    );
+  }
+
+  if (!user) {
+    return <p>User not found or not authenticated.</p>;
+  }
+
   return (
-    <main className="profile">
-      <h1>My Profile</h1>
-      <div className="profile-container">
-        <div className="profile-box">
-          <img src="https://t.ly/wgwQx" width={100} alt="Profile" />
-          <p className="profile-name">Steven Doe</p>
-          <p className="profile-proffession">JS Enthusiast</p>
-          <p className="profile-email">stevendoe1981@gmail.com</p>
-        </div>
-        <div className="profile-interests">
-          <p>
-            {" "}
-            Steven Doe Is Interested In The Following Categories Of Products:
-          </p>
-          <p className="profile-product">Photo Cameras</p>
-          <p className="profile-product">Network Switches</p>
-          <p className="profile-product">Smartphones</p>
-          <p className="profile-product">CD & DVD Disks</p>
-          <p className="profile-product">Smart TVs</p>
-        </div>
-      </div>
+    <main id="prof">
+      <h1>Profile Page</h1>
+      <h2>User Information</h2>
+      <p>
+        <strong>Username:</strong> {user.username}
+      </p>
+      <p>
+        <strong>Email:</strong> {user.email}
+      </p>
+      {/* Render more user information as needed */}
     </main>
   );
-}
+};
+
+export default Profile;
