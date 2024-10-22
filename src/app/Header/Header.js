@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./Header.css";
+import HeaderLoggedIn from "./HeaderLoggedIn";
 
 export default function Header() {
   return (
@@ -41,6 +42,7 @@ export default function Header() {
           </Link>
         </li>
       </ul>
+      <HeaderLoggedIn />
     </header>
   );
 }

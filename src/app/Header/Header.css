@@ -5,6 +5,9 @@
 
 header {
   background-color: rgb(247, 232, 213);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header ul {
@@ -24,4 +27,27 @@ header ul {
 
 .nav-item:hover {
   color: rgb(14, 185, 65);
+}
+
+.header-loggedIn {
+  margin: 0 3rem;
+}
+
+.header-hello {
+  font-weight: bold;
+}
+
+.header-logout {
+  margin-left: 0.5rem;
+}
+
+/* Button Styling */
+.btn-logout {
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.btn-logout:hover {
+  cursor: pointer;
 }
