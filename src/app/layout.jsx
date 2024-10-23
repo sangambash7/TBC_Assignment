@@ -1,13 +1,39 @@
 'use client';
+
 import './global.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { getCurrentAuthUser } from './_Services/authService';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isLoginPage = pathname === '/Login';
+
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const data = await getCurrentAuthUser();
+      setUserData(data);
+      setLoading(false); // Stop loading once data is fetched
+    };
+    fetchUserData();
+  }, []);
+
+  if (loading) {
+    return (
+      <html lang="en">
+        <body>
+          <main id="loading-main">
+            <div className="loader"></div>
+          </main>
+        </body>
+      </html>
+    );
+  }
 
   return (
     <html lang="en">
@@ -26,7 +52,7 @@ export default function RootLayout({ children }) {
       <body>
         <div id="root">
           <div className="application">
-            {!isLoginPage && <Header />}
+            {!isLoginPage && <Header userData={userData} />}
             {children}
             {!isLoginPage && <Footer />}
           </div>
