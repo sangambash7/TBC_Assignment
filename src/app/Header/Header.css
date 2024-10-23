@@ -118,7 +118,7 @@ header .hamburger:hover {
     display: flex;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 475px) {
   header {
     padding-inline: 12px;
   }
