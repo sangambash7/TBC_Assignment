@@ -1,13 +1,11 @@
 'use client';
 
 export default function HeaderLoggedIn({ userData }) {
-  // Function to handle user logout
   function handleLogout() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
-    window.location.href = '/Login'; // Redirect to login page
+    window.location.href = '/Login';
   }
 
-  // Ensure the header only renders if userData exists
   if (!userData) {
     return null;
   }

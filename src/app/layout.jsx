@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     const fetchUserData = async () => {
       const data = await getCurrentAuthUser();
       setUserData(data);
-      setLoading(false); // Stop loading once data is fetched
+      setLoading(false);
     };
     fetchUserData();
   }, []);
