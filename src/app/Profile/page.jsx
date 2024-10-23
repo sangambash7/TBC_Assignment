@@ -80,6 +80,29 @@ const Profile = () => {
             <Link href={`tel:${user.phone}`}>{user.phone}</Link>
           </p>
         </div>
+        <div className="payment-info">
+          <h6 className="payment-title">Payment Information</h6>
+          <div className="payment-types">
+            <div className="cards">
+              <h5>Banking Cards</h5>
+              <p>
+                <span>{user.bank.cardType}:</span>{' '}
+                {' ' + '**** ****' + ' ' + user.bank.cardNumber.slice(-4)}
+              </p>
+            </div>
+            <div className="wallets">
+              <h5>Crypto Wallets</h5>
+              <p>
+                <span>{user.crypto.coin}:</span>{' '}
+                {user.crypto.wallet.slice(0, 4) +
+                  ' ' +
+                  '**** ****' +
+                  ' ' +
+                  user.crypto.wallet.slice(-4)}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
