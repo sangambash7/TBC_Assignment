@@ -1,23 +1,23 @@
-"use client";
-import "./Login.css";
-import { authUser, getCookie } from "../../_Services/authService";
+'use client';
+import './Login.css';
+import { authUser, getCookie } from '../../_Services/authService';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [isCredsCorrect, setIsCredCorrect] = useState(true);
-  const [isAuthenticated, SetIsAuthenticated] = useState(getCookie("token"));
+  const [isAuthenticated, SetIsAuthenticated] = useState(getCookie('token'));
   async function sendAuthentication(e) {
     e.preventDefault();
 
     const response = await authUser(username, password);
 
     if (response) {
-      window.location.href = "/";
+      window.location.href = '/';
       setIsCredCorrect(true);
     } else {
       setIsCredCorrect(false);

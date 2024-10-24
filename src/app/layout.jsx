@@ -4,36 +4,11 @@ import './global.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { getCurrentAuthUser } from './_Services/authService';
+import { UserDataProvider } from './providers/UserDataProvider';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const isLoginPage = pathname === '/Login';
-
-  const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const data = await getCurrentAuthUser();
-      setUserData(data);
-      setLoading(false);
-    };
-    fetchUserData();
-  }, []);
-
-  if (loading) {
-    return (
-      <html lang="en">
-        <body>
-          <main id="loading-main">
-            <div className="loader"></div>
-          </main>
-        </body>
-      </html>
-    );
-  }
 
   return (
     <html lang="en">
@@ -50,13 +25,15 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <div id="root">
-          <div className="application">
-            {!isLoginPage && <Header userData={userData} />}
-            {children}
-            {!isLoginPage && <Footer />}
+        <UserDataProvider>
+          <div id="root">
+            <div className="application">
+              {!isLoginPage && <Header />}
+              {children}
+              {!isLoginPage && <Footer />}
+            </div>
           </div>
-        </div>
+        </UserDataProvider>
       </body>
     </html>
   );

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import './Header.css';
 import HeaderLoggedIn from './HeaderLoggedIn';
 import Hamburger from '../utils/Hamburger';
-export default function Header({ userData }) {
+
+export default function Header() {
   return (
     <header>
       <ul>
@@ -43,7 +44,7 @@ export default function Header({ userData }) {
         </li>
       </ul>
       <Hamburger />
-      <HeaderLoggedIn userData={userData} />
+      <HeaderLoggedIn />
     </header>
   );
 }
