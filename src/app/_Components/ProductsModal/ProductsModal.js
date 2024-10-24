@@ -1,4 +1,4 @@
-import './ProductsModal.css'
+import './ProductsModal.css';
 
 export default function ProductsModal({
     isOpen,
@@ -6,15 +6,28 @@ export default function ProductsModal({
     title,
     body,
     price,
+    image,
     setTitle,
     setBody,
     setPrice,
+    setImage,
     onSubmit,
     action,
 }) {
     if (!isOpen) {
         return null;
     }
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result); 
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     return (
         <div className="modal-overlay">
@@ -42,6 +55,12 @@ export default function ProductsModal({
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                    {image && <img src={image} alt="Preview" style={{ width: '100px', height: '100px', marginTop: '10px' }} />}
                 </div>
                 <button onClick={onSubmit}>
                     {action === "create" ? "Add Product" : "Save Changes"}
