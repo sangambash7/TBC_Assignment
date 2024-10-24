@@ -1,24 +1,37 @@
 footer {
-  background-color: rgb(247, 232, 213);
+  background-color: #333333;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 4rem;
 }
 
 footer p {
   align-self: center;
+  color: white;
 }
 
 .footer-menu ul {
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
 
-.footer-nav-item {
-  color: rgba(25, 11, 219, 0.932);
-  cursor: pointer;
+.footer-nav-item{
   text-decoration: none;
 }
 
-.footer-nav-item:hover {
-  color: rgb(14, 185, 65);
+.footer-nav-item h4{
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.5rem;
+}
+
+.footer-nav-item h4:hover {
+  color: #333333;
+  background-color: white;
 }

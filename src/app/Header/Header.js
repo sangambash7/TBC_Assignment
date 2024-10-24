@@ -8,37 +8,49 @@ export default function Header() {
       <ul>
         <li>
           <Link className="nav-item" href="/">
-            Home
+            <h3>
+              Home
+            </h3>
           </Link>
         </li>
         <li>
           {" "}
           <Link className="nav-item" href="/About">
-            About Us
+            <h3>
+              About Us
+            </h3>
           </Link>
         </li>
         <li>
           {" "}
           <Link className="nav-item" href="/Contact">
-            Contact
+            <h3>
+              Contact
+            </h3>
           </Link>
         </li>
         <li>
           {" "}
           <Link className="nav-item" href="/Products">
-            Products
+            <h3>  
+              Products
+            </h3>
           </Link>
         </li>
         <li>
           {" "}
           <Link className="nav-item" href="/Blogs">
-            Blogs
+            <h3>
+              Blogs
+            </h3>
           </Link>
         </li>
         <li>
           {" "}
           <Link className="nav-item" href="/Profile">
-            My Profile
+            <h3>
+              My Profile
+            </h3>
           </Link>
         </li>
       </ul>

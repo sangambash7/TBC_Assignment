@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getCurrentAuthUser } from "../_Services/authService";
+import "./HeaderLoggedIn.css"
 
 export default function HeaderLoggedIn() {
   const [userData, setUserData] = useState(null);
