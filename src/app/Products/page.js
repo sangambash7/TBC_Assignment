@@ -57,11 +57,14 @@ export default function Products({ searchParams }) {
   };
 
   const updateProduct = () => {
-    const updatedProducts = productList.map((product) => 
-      product.id === editProduct.id 
-        ? { ...product, title: editProduct.title, description: editProduct.description, price: parseFloat(editProduct.price) } 
+    if (!editProduct) return;
+
+    const updatedProducts = productList.map((product) =>
+      product.id === editProduct.id
+        ? { ...product, title: editProduct.title, description: editProduct.description, price: parseFloat(editProduct.price) }
         : product
     );
+
     saveToLocalStorage(updatedProducts);
     setEditProduct(null);
     setIsEditModalOpen(false);

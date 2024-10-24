@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function ProductsModal({
     isOpen,
@@ -12,14 +12,13 @@ export default function ProductsModal({
     onSubmit,
     action,
 }) {
-
-    if (isOpen) {
-        return null
+    if (!isOpen) {
+        return null;
     }
 
     return (
-        <div>
-            <div>
+        <div className="modal-overlay">
+            <div className="modal-content">
                 <span className="close" onClick={onClose}>
                     &times;
                 </span>
@@ -32,14 +31,14 @@ export default function ProductsModal({
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <input
-                        type='text'
+                        type="text"
                         placeholder="Body"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                     />
                     <input
                         type="number"
-                        placeholder="price"
+                        placeholder="Price"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
@@ -49,5 +48,5 @@ export default function ProductsModal({
                 </button>
             </div>
         </div>
-    )
+    );
 }
