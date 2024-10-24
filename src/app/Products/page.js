@@ -6,33 +6,41 @@ import SortingProducts from "../_Components/SortingProducts";
 import Product from "../_Components/Product";
 import ProductsModal from "../_Components/ProductsModal/ProductsModal";
 
-
 export default function Products({ searchParams }) {
   const [productList, setProductList] = useState([]);
   const [newProduct, setNewProduct] = useState({ title: "", description: "", price: "" });
   const [editProduct, setEditProduct] = useState(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   const getProducts = async (search) => {
     const url = `https://dummyjson.com/products/search${!search ? "" : `?q=${search}`}`;
     const response = await fetch(url);
     const data = await response.json();
     return data.products;
   };
+
   const search = searchParams.q || "";
+
   useEffect(() => {
     const fetchProducts = async () => {
       const products = await getProducts(search);
       setProductList(products);
     };
-    fetchProducts();
+
+    const localProducts = localStorage.getItem("products");
+    if (localProducts) {
+      setProductList(JSON.parse(localProducts));
+    } else {
+      fetchProducts();
+    }
   }, [search]);
 
   const saveToLocalStorage = (updatedProducts) => {
     localStorage.setItem("products", JSON.stringify(updatedProducts));
     setProductList(updatedProducts);
   };
+
   const createProduct = () => {
     const highestId = productList.length > 0 ? Math.max(...productList.map((product) => product.id)) : 0;
     const newProductPost = {
@@ -47,23 +55,32 @@ export default function Products({ searchParams }) {
     setNewProduct({ title: "", description: "", price: "" });
     setIsCreateModalOpen(false);
   };
+
   const updateProduct = () => {
-    const updatedProducts = productList.map((product) => product.id === editProduct.id ?  { ...product, title: editProduct.title, description: editProduct.description, price: parseFloat(editProduct.price) } : product);
+    const updatedProducts = productList.map((product) => 
+      product.id === editProduct.id 
+        ? { ...product, title: editProduct.title, description: editProduct.description, price: parseFloat(editProduct.price) } 
+        : product
+    );
     saveToLocalStorage(updatedProducts);
     setEditProduct(null);
     setIsEditModalOpen(false);
   };
+
   const deleteProduct = (id) => {
     const updatedProducts = productList.filter((product) => product.id !== id);
     saveToLocalStorage(updatedProducts);
   };
+
   const toggleCreateModal = () => {
     setIsCreateModalOpen(!isCreateModalOpen);
   };
+
   const toggleEditModal = (product) => {
     setEditProduct(product);
     setIsEditModalOpen(true);
   };
+
   return (
     <main className="products">
       <div className="products-header">
@@ -82,8 +99,8 @@ export default function Products({ searchParams }) {
         setBody={(body) => setNewProduct({ ...newProduct, description: body })}
         setPrice={(price) => setNewProduct({ ...newProduct, price })}
         onSubmit={createProduct}
-        action="create" />
-
+        action="create"
+      />
       {isEditModalOpen && editProduct && (
         <ProductsModal
           isOpen={isEditModalOpen}
@@ -95,12 +112,13 @@ export default function Products({ searchParams }) {
           setBody={(body) => setEditProduct({ ...editProduct, description: body })}
           setPrice={(price) => setEditProduct({ ...editProduct, price })}
           onSubmit={updateProduct}
-          action="edit" />)}
+          action="edit"
+        />
+      )}
       <div className="products-list">
         {productList.map((product) => (
-          <div>
+          <div key={product.id}>
             <Product
-              key={product.id}
               id={product.id}
               title={product.title}
               description={product.description}
@@ -111,7 +129,9 @@ export default function Products({ searchParams }) {
               <button onClick={() => toggleEditModal(product)}>Edit</button>
               <button onClick={() => deleteProduct(product.id)}>Delete</button>
             </div>
-          </div>))}
+          </div>
+        ))}
       </div>
-    </main>);
+    </main>
+  );
 }
