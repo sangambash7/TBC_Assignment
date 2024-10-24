@@ -10,25 +10,55 @@ export default function Footer() {
         <ul>
           <li>
             <Link className="footer-nav-item" href="/">
-              Home
+              <h4>
+                Home
+              </h4>
             </Link>
           </li>
           <li>
             {' '}
             <Link className="footer-nav-item" href="/About">
-              About Us
+              <h4>
+                About Us
+              </h4>
             </Link>
           </li>
           <li>
             {' '}
             <Link className="footer-nav-item" href="/Contact">
-              Contact
+              <h4>
+                Contact
+              </h4>
             </Link>
           </li>
           <li>
+
+            {" "}
+            <Link className="footer-nav-item" href="/Products">
+              <h4>
+                Products
+              </h4>
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link className="footer-nav-item" href="/Blogs">
+              <h4>
+                Blogs
+              </h4>
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link className="footer-nav-item" href="/Profile">
+              <h4>
+                My Profile
+              </h4>
+
             {' '}
             <Link className="footer-nav-item" href="/Assignment-3">
               Assignment-3
+
             </Link>
           </li>
         </ul>

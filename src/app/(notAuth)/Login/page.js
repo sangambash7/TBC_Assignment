@@ -1,9 +1,12 @@
-'use client';
-import './Login.css';
-import { authUser, getCookie } from '../../_Services/authService';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
+
+import "./Login.css";
+import { authUser, getCookie } from "../../_Services/authService";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import user from '../../../../public/user.png'
+import password from '../../../../public/password.png'
 
 export default function Login() {
   const router = useRouter();
@@ -29,24 +32,34 @@ export default function Login() {
       <div className="login">
         {!isAuthenticated ? (
           <>
-            <h1>Please Authenticate To Access Resources.</h1>
             <form className="login-form" onSubmit={sendAuthentication}>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+            <h1>Please Authenticate To Access Resources.</h1>
+              <div className="username">
+                <label htmlFor="username">
+                  <img src='user.png'/>
+                  Username:
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="password">
+                <label htmlFor="password">
+                <img src='password.png'/>
+                Password:
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
               <button type="submit" className="btn-login">
                 Login
               </button>

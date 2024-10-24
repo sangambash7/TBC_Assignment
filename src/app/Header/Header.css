@@ -22,6 +22,18 @@ header ul {
   list-style-type: none;
   display: flex;
   justify-content: center;
+  padding: 0.75rem;
+  gap: 4rem;
+}
+
+.nav-item{
+  text-decoration: none;
+}
+
+.nav-item h3{
+  font-size: 1.25rem;
+  color: white;
+
   padding: 5px;
   gap: 18px;
   color: var(--secondary-color);
@@ -29,10 +41,18 @@ header ul {
 }
 header ul a {
   color: inherit;
+
   cursor: pointer;
   transition: 0.4s;
   text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.5rem;
 }
+
+
+.nav-item h3:hover {
+  color: #333333;
+  background-color: white;
 
 header ul a:hover {
   color: var(--main-color);
