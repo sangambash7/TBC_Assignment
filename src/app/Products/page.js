@@ -1,91 +1,140 @@
-import Link from "next/link";
-
+'use client'
+import { useState, useEffect } from "react";
 import "./Products.css";
 import SearchProducts from "../_Components/SearchProducts";
 import SortingProducts from "../_Components/SortingProducts";
 import Product from "../_Components/Product";
+import ProductsModal from "../_Components/ProductsModal/ProductsModal";
 
-export default async function Products({ searchParams }) {
-  const getProducts = async function (search) {
-    const url = `https://dummyjson.com/products/search${
-      !search ? "" : `?q=${search}`
-    }`;
+export default function Products({ searchParams }) {
+  const [productList, setProductList] = useState([]);
+  const [newProduct, setNewProduct] = useState({ title: "", description: "", price: "" });
+  const [editProduct, setEditProduct] = useState(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const getProducts = async (search) => {
+    const url = `https://dummyjson.com/products/search${!search ? "" : `?q=${search}`}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(url);
     return data.products;
   };
 
   const search = searchParams.q || "";
-  console.log("Search Query: ", search);
 
-  const productList = await getProducts(search);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const products = await getProducts(search);
+      setProductList(products);
+    };
 
-  // const sortProducts = async function (sortBy, order) {
-  //   const response = await fetch(
-  //     `https://dummyjson.com/products?sortBy=${sortBy}&order=${order}`
-  //   );
-  //   const data = await response.json();
-  //   setProductList(data.products);
-  // };
+    const localProducts = localStorage.getItem("products");
+    if (localProducts) {
+      setProductList(JSON.parse(localProducts));
+    } else {
+      fetchProducts();
+    }
+  }, [search]);
 
-  // const debounceSearchProducts = debouncerFunction(searchProducts, 1000);
+  const saveToLocalStorage = (updatedProducts) => {
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    setProductList(updatedProducts);
+  };
 
-  // function debouncerFunction(fun, delay) {
-  //   let timeOutTime;
+  const createProduct = () => {
+    const highestId = productList.length > 0 ? Math.max(...productList.map((product) => product.id)) : 0;
+    const newProductPost = {
+      id: highestId + 1,
+      title: newProduct.title,
+      description: newProduct.description,
+      image: "default-image-url.jpg",
+      price: parseFloat(newProduct.price),
+    };
+    const updatedProducts = [newProductPost, ...productList];
+    saveToLocalStorage(updatedProducts);
+    setNewProduct({ title: "", description: "", price: "" });
+    setIsCreateModalOpen(false);
+  };
 
-  //   return function (...args) {
-  //     clearTimeout(timeOutTime);
+  const updateProduct = () => {
+    if (!editProduct) return;
 
-  //     timeOutTime = setTimeout(() => {
-  //       fun.apply(this, args);
-  //     }, delay);
-  //   };
-  // }
+    const updatedProducts = productList.map((product) =>
+      product.id === editProduct.id
+        ? { ...product, title: editProduct.title, description: editProduct.description, price: parseFloat(editProduct.price) }
+        : product
+    );
+
+    saveToLocalStorage(updatedProducts);
+    setEditProduct(null);
+    setIsEditModalOpen(false);
+  };
+
+  const deleteProduct = (id) => {
+    const updatedProducts = productList.filter((product) => product.id !== id);
+    saveToLocalStorage(updatedProducts);
+  };
+
+  const toggleCreateModal = () => {
+    setIsCreateModalOpen(!isCreateModalOpen);
+  };
+
+  const toggleEditModal = (product) => {
+    setEditProduct(product);
+    setIsEditModalOpen(true);
+  };
 
   return (
     <main className="products">
       <div className="products-header">
         <h1>List Of Products</h1>
-
+        <button onClick={toggleCreateModal}>Create Product</button>
         <SearchProducts />
-
         <SortingProducts initialProductList={productList} />
-
-        {/* <div className="products-sorting">
-          <h3>Sort</h3>
-
-          <select
-            className="products-sortingMenu"
-            onChange={(e) => {
-              const [sortBy, order] = e.target.value.split("-");
-              sortProducts(sortBy, order);
-            }}
-          >
-            <option disabled selected hidden>
-              By Default
-            </option>
-            <option value={"title-asc"}>Sort By Title Asc</option>
-            <option value={"title-desc"}>Sort By Title Desc</option>
-            <option value={"price-asc"}>Sort By Price Asc</option>
-            <option value={"price-desc"}>Sort By Price Desc</option>
-          </select>
-        </div> */}
       </div>
-
-      <ul className="products-list">
-        {productList.map((product) => {
-          return (
+      <ProductsModal
+        isOpen={isCreateModalOpen}
+        onClose={toggleCreateModal}
+        title={newProduct.title}
+        body={newProduct.description}
+        price={newProduct.price}
+        setTitle={(title) => setNewProduct({ ...newProduct, title })}
+        setBody={(body) => setNewProduct({ ...newProduct, description: body })}
+        setPrice={(price) => setNewProduct({ ...newProduct, price })}
+        onSubmit={createProduct}
+        action="create"
+      />
+      {isEditModalOpen && editProduct && (
+        <ProductsModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          title={editProduct.title}
+          body={editProduct.description}
+          price={editProduct.price}
+          setTitle={(title) => setEditProduct({ ...editProduct, title })}
+          setBody={(body) => setEditProduct({ ...editProduct, description: body })}
+          setPrice={(price) => setEditProduct({ ...editProduct, price })}
+          onSubmit={updateProduct}
+          action="edit"
+        />
+      )}
+      <div className="products-list">
+        {productList.map((product) => (
+          <div key={product.id}>
             <Product
               id={product.id}
               title={product.title}
               description={product.description}
-              image={product.images[0]}
+              image={(product.images && product.images.length > 0 ? product.images[0] : "fallback-image-url.jpg")}
               price={product.price}
             />
-          );
-        })}
-      </ul>
+            <div className="product-actions">
+              <button onClick={() => toggleEditModal(product)}>Edit</button>
+              <button onClick={() => deleteProduct(product.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }

@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import "./Footer.css";
+import './Footer.css';
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            {" "}
+            {' '}
             <Link className="footer-nav-item" href="/About">
               <h4>
                 About Us
@@ -24,7 +24,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            {" "}
+            {' '}
             <Link className="footer-nav-item" href="/Contact">
               <h4>
                 Contact
@@ -32,6 +32,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
+
             {" "}
             <Link className="footer-nav-item" href="/Products">
               <h4>
@@ -53,6 +54,11 @@ export default function Footer() {
               <h4>
                 My Profile
               </h4>
+
+            {' '}
+            <Link className="footer-nav-item" href="/Assignment-3">
+              Assignment-3
+
             </Link>
           </li>
         </ul>

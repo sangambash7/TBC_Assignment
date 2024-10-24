@@ -1,7 +1,7 @@
 export async function authUser(username, password) {
-  const response = await fetch("https://dummyjson.com/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch('https://dummyjson.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username: username,
       password: password,
@@ -22,15 +22,15 @@ export async function authUser(username, password) {
 export function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
+  if (parts.length === 2) return parts.pop().split(';').shift();
   return null;
 }
 
 export async function getCurrentAuthUser() {
-  const token = getCookie("token");
+  const token = getCookie('token');
 
-  const response = await fetch("https://dummyjson.com/auth/me", {
-    method: "GET",
+  const response = await fetch('https://dummyjson.com/auth/me', {
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -45,7 +45,7 @@ export async function getCurrentAuthUser() {
 }
 
 export async function checkisIsAuthenticated() {
-  const check = getCookie("token");
+  const check = getCookie('token');
   if (check) return true;
   return false;
 }

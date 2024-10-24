@@ -1,6 +1,7 @@
-import Link from "next/link";
-import "./Header.css";
-import HeaderLoggedIn from "./HeaderLoggedIn";
+import Link from 'next/link';
+import './Header.css';
+import HeaderLoggedIn from './HeaderLoggedIn';
+import Hamburger from '../utils/Hamburger';
 
 export default function Header() {
   return (
@@ -14,7 +15,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          {" "}
+          {' '}
           <Link className="nav-item" href="/About">
             <h3>
               About Us
@@ -22,7 +23,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          {" "}
+          {' '}
           <Link className="nav-item" href="/Contact">
             <h3>
               Contact
@@ -30,7 +31,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          {" "}
+          {' '}
           <Link className="nav-item" href="/Products">
             <h3>  
               Products
@@ -38,7 +39,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          {" "}
+          {' '}
           <Link className="nav-item" href="/Blogs">
             <h3>
               Blogs
@@ -46,7 +47,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          {" "}
+          {' '}
           <Link className="nav-item" href="/Profile">
             <h3>
               My Profile
@@ -54,6 +55,7 @@ export default function Header() {
           </Link>
         </li>
       </ul>
+      <Hamburger />
       <HeaderLoggedIn />
     </header>
   );

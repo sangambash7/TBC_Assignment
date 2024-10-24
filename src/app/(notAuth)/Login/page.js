@@ -1,3 +1,4 @@
+
 "use client";
 
 import "./Login.css";
@@ -9,17 +10,17 @@ import password from '../../../../public/password.png'
 
 export default function Login() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [isCredsCorrect, setIsCredCorrect] = useState(true);
-  const [isAuthenticated, SetIsAuthenticated] = useState(getCookie("token"));
+  const [isAuthenticated, SetIsAuthenticated] = useState(getCookie('token'));
   async function sendAuthentication(e) {
     e.preventDefault();
 
     const response = await authUser(username, password);
 
     if (response) {
-      window.location.href = "/";
+      window.location.href = '/';
       setIsCredCorrect(true);
     } else {
       setIsCredCorrect(false);
