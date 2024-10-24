@@ -54,12 +54,9 @@ export default function Footer() {
               <h4>
                 My Profile
               </h4>
-
+              </Link>
             {' '}
-            <Link className="footer-nav-item" href="/Assignment-3">
-              Assignment-3
-
-            </Link>
+            
           </li>
         </ul>
       </div>
