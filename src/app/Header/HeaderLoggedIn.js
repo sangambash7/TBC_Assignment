@@ -1,6 +1,10 @@
 'use client';
 
-export default function HeaderLoggedIn({ userData }) {
+import { useUserDataContext } from '../providers/UserDataProvider';
+
+export default function HeaderLoggedIn() {
+  const userData = useUserDataContext();
+
   function handleLogout() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
     window.location.href = '/Login';
