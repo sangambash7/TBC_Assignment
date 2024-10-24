@@ -1,6 +1,7 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
-import { getCurrentAuthUser } from '../_Services/authService';
+import { getCurrentAuthUser } from '../../_Services/authService';
 import Image from 'next/image';
 import './Profile.css';
 import Link from 'next/link';
