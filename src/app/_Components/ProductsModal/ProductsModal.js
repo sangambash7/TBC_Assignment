@@ -1,4 +1,4 @@
-import React from 'react';
+import './ProductsModal.css'
 
 export default function ProductsModal({
     isOpen,
