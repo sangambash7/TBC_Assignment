@@ -1,5 +1,5 @@
 import "../Products.css";
-import Button from "../../_Components/Button";
+import Button from "../../../_Components/Button";
 
 async function fetchProductPage(id) {
   const response = await fetch(`https://dummyjson.com/products/${id}`);

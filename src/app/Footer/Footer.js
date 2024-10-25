@@ -5,7 +5,7 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer>
-      <p>2024@Sandro Gambashidze</p>
+      <p>2024@1st Group of Second Collaboration</p>
       <div className="footer-menu">
         <ul>
           <li>

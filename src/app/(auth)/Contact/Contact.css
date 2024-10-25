@@ -1,6 +1,6 @@
 .contact {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   padding: 10px 10px 0 10px;
 }
 

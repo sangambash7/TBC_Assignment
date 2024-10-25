@@ -1,10 +1,10 @@
 'use client';
 import { useState, useEffect } from "react";
 import "./Products.css";
-import SearchProducts from "../_Components/SearchProducts";
-import SortingProducts from "../_Components/SortingProducts";
-import Product from "../_Components/Product";
-import ProductsModal from "../_Components/ProductsModal/ProductsModal";
+import SearchProducts from "../../_Components/SearchProducts";
+import SortingProducts from "../../_Components/SortingProducts";
+import Product from "../../_Components/Product";
+import ProductsModal from "../../_Components/ProductsModal/ProductsModal";
 
 export default function Products({ searchParams }) {
     const [productList, setProductList] = useState([]);

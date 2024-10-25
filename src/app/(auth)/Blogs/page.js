@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./Blogs.css";
-import BlogModal from "../_Components/BlogModal/BlogModal";
+import BlogModal from "../../_Components/BlogModal/BlogModal";
 
 export default function Blogs() {
   const [blogList, setBlogList] = useState([]);
@@ -81,11 +81,13 @@ export default function Blogs() {
 
   return (
     <main className="blogs">
+      <div className="blogs-header">
       <h1>List Of Blog Posts</h1>
 
       <button onClick={toggleCreateModal}>Create Post</button>
+      </div>
 
-      {/* Create Blog Modal */}
+      {/* Creating Blog Modal on Clicking */}
       <BlogModal
         isOpen={isCreateModalOpen}
         onClose={toggleCreateModal}
@@ -97,7 +99,7 @@ export default function Blogs() {
         action="create"
       />
 
-      {/* Edit Blog Modal */}
+      {/* Editing Blog Modal */}
       {isEditModalOpen && editBlog && (
         <BlogModal
           isOpen={isEditModalOpen}

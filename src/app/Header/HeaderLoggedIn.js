@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { getCurrentAuthUser } from "../_Services/authService";
 import "./HeaderLoggedIn.css"
 import { useUserDataContext } from '../providers/UserDataProvider';
 

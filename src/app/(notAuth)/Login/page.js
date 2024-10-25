@@ -13,15 +13,16 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isCredsCorrect, setIsCredCorrect] = useState(true);
-  const [isAuthenticated, SetIsAuthenticated] = useState(getCookie('token'));
+  const [isAuthenticated, SetIsAuthenticated] = useState(false);
   async function sendAuthentication(e) {
     e.preventDefault();
 
     const response = await authUser(username, password);
 
     if (response) {
-      window.location.href = '/';
       setIsCredCorrect(true);
+      SetIsAuthenticated(true);
+      window.location.href = '/';
     } else {
       setIsCredCorrect(false);
     }
@@ -72,7 +73,7 @@ export default function Login() {
           </>
         ) : (
           <h1 className="login-authenticated">
-            You Are Already Authenticated.
+            You Are Authenticated!
           </h1>
         )}
       </div>

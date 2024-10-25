@@ -3,12 +3,9 @@
 import './global.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import { usePathname } from 'next/navigation';
 import { UserDataProvider } from './providers/UserDataProvider';
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-  const isLoginPage = pathname === '/Login';
 
   return (
     <html lang="en">
@@ -28,9 +25,9 @@ export default function RootLayout({ children }) {
         <UserDataProvider>
           <div id="root">
             <div className="application">
-              {!isLoginPage && <Header />}
+             <Header />
               {children}
-              {!isLoginPage && <Footer />}
+              <Footer />
             </div>
           </div>
         </UserDataProvider>
