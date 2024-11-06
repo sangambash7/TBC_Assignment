@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { checkisIsAuthenticated } from "../_Services/authService";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { checkisIsAuthenticated } from '../_Services/authService';
 
 export default function authLayout({ children }) {
-
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const router = useRouter();
 
@@ -17,5 +16,5 @@ export default function authLayout({ children }) {
     getAuthStatus();
   }, []);
 
-  return <>{isAuthenticated ? children : router.push("/Login")}</>;
+  return <>{isAuthenticated ? children : router.push('/Login')}</>;
 }

@@ -1,9 +1,8 @@
-"use client";
-import '../../global.css';
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { checkisIsAuthenticated } from "../../_Services/authService";
-
+'use client';
+import '../../globals.css';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { checkisIsAuthenticated } from '../../_Services/authService';
 
 export default function NotAuthLayout({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,7 +15,6 @@ export default function NotAuthLayout({ children }) {
     }
     getAuthStatus();
   }, []);
-
 
   return (
     <html lang="en">
@@ -33,11 +31,11 @@ export default function NotAuthLayout({ children }) {
         />
       </head>
       <body>
-          <div id="root">
-            <div className="application">
-            {!isAuthenticated ? children : router.push("/")}
-            </div>
+        <div id="root">
+          <div className="application">
+            {!isAuthenticated ? children : router.push('/')}
           </div>
+        </div>
       </body>
     </html>
   );

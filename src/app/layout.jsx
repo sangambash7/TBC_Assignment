@@ -1,12 +1,11 @@
 'use client';
 
-import './global.css';
+import './globals.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import { UserDataProvider } from './providers/UserDataProvider';
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <head>
@@ -25,7 +24,7 @@ export default function RootLayout({ children }) {
         <UserDataProvider>
           <div id="root">
             <div className="application">
-             <Header />
+              <Header />
               {children}
               <Footer />
             </div>

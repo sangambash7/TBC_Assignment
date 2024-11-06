@@ -1,4 +1,4 @@
-import HomeProduct from "../_Components/HomeProducts";
+import HomeProduct from '../_Components/HomeProducts';
 
 function App() {
   return (
