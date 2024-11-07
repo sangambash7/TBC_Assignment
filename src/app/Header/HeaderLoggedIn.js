@@ -1,28 +1,21 @@
 'use client';
 
-import "./HeaderLoggedIn.css"
-import { useUserDataContext } from '../providers/UserDataProvider';
+import './HeaderLoggedIn.css';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function HeaderLoggedIn() {
-  const userData = useUserDataContext();
-
-  function handleLogout() {
-    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
-    window.location.href = '/Login';
-  }
-
-  if (!userData) {
-    return null;
-  }
+  const { user, error, isLoading } = useUser();
 
   return (
-    <div className="header-loggedIn">
-      <span className="header-hello">{`Hello ${userData.firstName}!`} </span>
-      <span className="header-logout">
-        <button className="btn-logout" onClick={handleLogout}>
-          Log Out
-        </button>
-      </span>
-    </div>
+    user && (
+      <div className="header-loggedIn">
+        <span className="header-hello">{`Hello ${user?.nickname}!`} </span>
+        <span className="header-logout">
+          <button className="btn-logout">
+            <a href="/api/auth/logout">Log Out</a>
+          </button>
+        </span>
+      </div>
+    )
   );
 }

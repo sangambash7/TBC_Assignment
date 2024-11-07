@@ -2,19 +2,9 @@
 import '../../globals.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkisIsAuthenticated } from '../../_Services/authService';
 
 export default function NotAuthLayout({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    async function getAuthStatus() {
-      const res = await checkisIsAuthenticated();
-      setIsAuthenticated(res);
-    }
-    getAuthStatus();
-  }, []);
 
   return (
     <html lang="en">
@@ -32,9 +22,7 @@ export default function NotAuthLayout({ children }) {
       </head>
       <body>
         <div id="root">
-          <div className="application">
-            {!isAuthenticated ? children : router.push('/')}
-          </div>
+          <div className="application">{children}</div>
         </div>
       </body>
     </html>

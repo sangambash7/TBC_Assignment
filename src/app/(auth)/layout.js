@@ -1,20 +1,24 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { checkisIsAuthenticated } from '../_Services/authService';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function authLayout({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const { user, error, isLoading } = useUser();
   const router = useRouter();
 
-  useEffect(() => {
-    async function getAuthStatus() {
-      const res = await checkisIsAuthenticated();
-      setIsAuthenticated(res);
-    }
-    getAuthStatus();
-  }, []);
+  if (isLoading) return <div>Loading...</div>;
 
-  return <>{isAuthenticated ? children : router.push('/Login')}</>;
+  if (user) return <>{children}</>;
+
+  return (
+    <>
+      <Link href="/Login" style={{ textDecoration: 'underline' }}>
+        Click Here To Login
+      </Link>
+    </>
+  );
+
+  // return router.push('/Login');
 }

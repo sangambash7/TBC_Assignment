@@ -3,7 +3,7 @@
 import './globals.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import { UserDataProvider } from './providers/UserDataProvider';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function RootLayout({ children }) {
   return (
@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>
-        <UserDataProvider>
+      <UserProvider>
+        <body>
           <div id="root">
             <div className="application">
               <Header />
@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
               <Footer />
             </div>
           </div>
-        </UserDataProvider>
-      </body>
+        </body>
+      </UserProvider>
     </html>
   );
 }
