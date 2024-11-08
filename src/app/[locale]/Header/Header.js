@@ -1,8 +1,11 @@
-import Link from 'next/link';
+// import Link from 'next/link';
+import { Link } from '../../../i18n/routing';
+
 import './Header.css';
 import HeaderLoggedIn from './HeaderLoggedIn';
 import Hamburger from '../utils/Hamburger';
 import ThemeToggler from '../_Components/ThemeToggler';
+import LangToggler from '../_Components/LangToggler';
 
 export default function Header() {
   return (
@@ -47,6 +50,7 @@ export default function Header() {
       <Hamburger />
       <HeaderLoggedIn />
       <ThemeToggler />
+      <LangToggler />
     </header>
   );
 }

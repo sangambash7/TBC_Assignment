@@ -1,0 +1,13 @@
+{
+  "HomePage": {
+    "title": "Photo Cameras",
+    "cart": "Add To Cart"
+  },
+  "Header": {
+    "logout": "Log Out"
+  },
+  "Login": {
+    "authenticate": "Please Authenticate To Access Resources",
+    "login": "Login"
+  }
+}

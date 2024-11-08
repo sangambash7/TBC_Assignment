@@ -1,13 +1,22 @@
-'use client';
+// 'use client';
 
 import './globals.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+  const { locale } = params;
+  // if (!routing.locales.includes(locale)) {
+  //   notFound();
+  // }
+
+  const messages = await getMessages();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -24,9 +33,11 @@ export default function RootLayout({ children }) {
         <body>
           <div id="root">
             <div className="application">
-              <Header />
-              {children}
-              <Footer />
+              <NextIntlClientProvider messages={messages}>
+                <Header />
+                {children}
+                <Footer />
+              </NextIntlClientProvider>
             </div>
           </div>
         </body>

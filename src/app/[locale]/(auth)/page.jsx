@@ -1,9 +1,12 @@
+import { useTranslations } from 'next-intl';
+
 import HomeProduct from '../_Components/HomeProducts';
 
 function App() {
+  const t = useTranslations('HomePage');
   return (
     <main>
-      <h2>Photo Cameras</h2>
+      <h2>{t('title')}</h2>
       <div className="home-products-container">
         <HomeProduct
           name="Konica"
