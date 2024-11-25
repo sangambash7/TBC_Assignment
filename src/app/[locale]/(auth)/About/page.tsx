@@ -1,9 +1,9 @@
-import "./About.css";
+import './About.css';
 export default function About() {
   return (
     <main className="about">
       <div className="about-box">
-        პროექტი იწერება და ახლდება{" "}
+        პროექტი იწერება და ახლდება{' '}
         <span className="font-bold">"TBC x USAID"</span> მხარდაჭერით. ამჟამად
         პროექტი მოიცავს სამ გვერდს: მთავარ გვერდს, საკონტაქტო გვერდს და გვერდს
         "ჩვენს შესახებ".

@@ -1,6 +1,16 @@
-import Button from "./Button";
+import Button from './Button';
 
-export default function HomeProduct({ name, description, image }) {
+interface HomeProductProps {
+  name: string;
+  description: string;
+  image: string;
+}
+
+export default function HomeProduct({
+  name,
+  description,
+  image,
+}: HomeProductProps) {
   return (
     <div className="home-product">
       <h4>{name}</h4>

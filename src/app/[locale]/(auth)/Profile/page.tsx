@@ -6,11 +6,25 @@ import './Profile.css';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-const Profile = () => {
+interface User {
+  email: string;
+  email_verified: boolean;
+  family_name: string;
+  given_name: string;
+  name: string;
+  nickname: string;
+  picture: string;
+  sid: string;
+  sub: string;
+  updated_at: string;
+}
+
+const Profile: React.FC<User> = () => {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
+  console.log(user);
 
   return (
     user && (
@@ -52,7 +66,7 @@ const Profile = () => {
             <p className="company">{user.company?.name} </p>
             <p className="comp-title">{user.company?.title}</p>
           </div> */}
-          <div className="contacts  grid-item">
+          <div className="contacts grid-item">
             <h6>Contact info</h6>
             <p className="mail">
               <span>mail:</span>

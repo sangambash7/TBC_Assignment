@@ -1,0 +1,88 @@
+import './ProductsModal.css';
+
+interface ProductsModalInterface {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  body: string;
+  price: string;
+  image: string;
+  setTitle: (title: string) => void;
+  setBody: (body: string) => void;
+  setPrice: (price: number) => void;
+  setImage: (image: string) => void;
+  onSubmit: () => void;
+  action: string;
+}
+
+export default function ProductsModal({
+  isOpen,
+  onClose,
+  title,
+  body,
+  price,
+  image,
+  setTitle,
+  setBody,
+  setPrice,
+  setImage,
+  onSubmit,
+  action,
+}: ProductsModalInterface) {
+  if (!isOpen) {
+    return null;
+  }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <span className="close" onClick={onClose}>
+          &times;
+        </span>
+        <h2>{action === 'create' ? 'Create New Product' : 'Edit Product'}</h2>
+        <div className="post-content">
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Body"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+          {image && (
+            <img
+              src={image}
+              alt="Preview"
+              style={{ width: '100px', height: '100px', marginTop: '10px' }}
+            />
+          )}
+        </div>
+        <button onClick={onSubmit}>
+          {action === 'create' ? 'Add Product' : 'Save Changes'}
+        </button>
+      </div>
+    </div>
+  );
+}

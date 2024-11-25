@@ -1,5 +1,5 @@
-"use client";
-import { useEffect, useState } from "react";
+'use client';
+import { useEffect, useState } from 'react';
 
 export default function SortingProducts({ initialProductList }) {
   const [productList, setProductList] = useState({ initialProductList });
@@ -24,17 +24,17 @@ export default function SortingProducts({ initialProductList }) {
         className="products-sortingMenu"
         defaultValue=""
         onChange={(e) => {
-          const [sortBy, order] = e.target.value.split("-");
+          const [sortBy, order] = e.target.value.split('-');
           sortProducts(sortBy, order);
         }}
       >
         <option disabled hidden value="">
           By Default
         </option>
-        <option value={"title-asc"}>Sort By Title Asc</option>
-        <option value={"title-desc"}>Sort By Title Desc</option>
-        <option value={"price-asc"}>Sort By Price Asc</option>
-        <option value={"price-desc"}>Sort By Price Desc</option>
+        <option value={'title-asc'}>Sort By Title Asc</option>
+        <option value={'title-desc'}>Sort By Title Desc</option>
+        <option value={'price-asc'}>Sort By Price Asc</option>
+        <option value={'price-desc'}>Sort By Price Desc</option>
       </select>
     </div>
   );

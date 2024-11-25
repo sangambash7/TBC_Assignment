@@ -1,13 +1,19 @@
-import "../Blogs.css";
+import '../Blogs.css';
 
-async function getBlogById(id) {
+interface BlogPageProps {
+  params: {
+    id: number;
+  };
+}
+
+async function getBlogById(id: number) {
   const response = await fetch(`https://dummyjson.com/posts/${id}`);
   const data = await response.json();
 
   return data;
 }
 
-export default async function BlogPage({ params }) {
+export default async function BlogPage({ params }: BlogPageProps) {
   const id = params.id;
 
   const blogData = await getBlogById(id);
@@ -19,10 +25,10 @@ export default async function BlogPage({ params }) {
         <p className="blog-page-body">{blogData.body}</p>
         <div className="blog-bottom">
           <p className="blog-tags">
-            Tags:{" "}
+            Tags:{' '}
             {blogData.tags.map((tag, index) => (
               <span key={index} className="blog-tag">
-                {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}{" "}
+                {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}{' '}
               </span>
             ))}
           </p>

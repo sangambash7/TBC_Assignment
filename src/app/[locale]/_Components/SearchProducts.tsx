@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function SearchProducts() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchText, setSearchText] = useState(searchParams.get("q") || "");
+  const [searchText, setSearchText] = useState(searchParams.get('q') || '');
 
   function debouncerFunction(fun, delay) {
-    let timeOutTime;
+    let timeOutTime: Object;
 
     return function (...args) {
       clearTimeout(timeOutTime);
@@ -26,7 +26,7 @@ export default function SearchProducts() {
     if (searchText) {
       router.push(`/Products?q=${searchText}`);
     } else {
-      router.push("/Products");
+      router.push('/Products');
     }
   }
 
