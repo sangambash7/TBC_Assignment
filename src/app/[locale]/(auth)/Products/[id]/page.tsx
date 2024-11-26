@@ -1,21 +1,22 @@
 import '../Products.css';
 import Button from '../../../_Components/Button';
+import { getItemsById } from '../../../_Services/getSupabaseData';
 
-async function fetchProductPage(id) {
-  const response = await fetch(`https://dummyjson.com/products/${id}`);
-  const data = await response.json();
-  console.log(response);
-  if (!response.ok) {
-    return null;
-  } else {
-    return data;
-  }
+
+
+type Locale = 'en' | 'ge';
+
+interface ProductProps {
+  params: {
+    id: number;
+    locale: Locale;
+  };
 }
 
-export default async function ProductPage({ params }) {
-  const id = params.id;
+export default async function ProductPage({ params }: ProductProps) {
+  const { id, locale: lang } = params;
 
-  const productData = await fetchProductPage(id);
+  const productData = await getItemsById('Products', lang, id);
 
   if (!productData) {
     return <h1>Sorry! The Page Was Not Found!</h1>;
@@ -32,7 +33,7 @@ export default async function ProductPage({ params }) {
           </span>
         </p>
         <div className="products-page-middle">
-          <img src={productData.images[0]} />
+          {/* <img src={productData.images[0]} /> */}
           <div className="products-page-middleRight">
             <div className="products-page-price">
               <span className="product-page-oldPrice">{productData.price}</span>{' '}
@@ -49,11 +50,11 @@ export default async function ProductPage({ params }) {
           <p>{productData.description}</p>
           <div className="products-page-tags">
             Tags:{' '}
-            {productData.tags.map((tag, index) => (
+            {/* {productData.tags.map((tag, index) => (
               <span key={index} className="products-page-tag">
                 {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}{' '}
               </span>
-            ))}
+            ))} */}
           </div>
         </div>
       </main>

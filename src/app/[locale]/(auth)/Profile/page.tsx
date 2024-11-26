@@ -6,20 +6,23 @@ import './Profile.css';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-interface User {
-  email: string;
-  email_verified: boolean;
-  family_name: string;
-  given_name: string;
-  name: string;
-  nickname: string;
-  picture: string;
-  sid: string;
-  sub: string;
-  updated_at: string;
+interface UserInterface {
+  user: {
+    email: string;
+    email_verified: boolean;
+    family_name: string;
+    given_name: string;
+    name: string;
+    nickname: string;
+    age: number;
+    picture: string;
+    sid: string;
+    sub: string;
+    updated_at: string;
+  };
 }
 
-const Profile: React.FC<User> = () => {
+const Profile = () => {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
@@ -31,15 +34,14 @@ const Profile: React.FC<User> = () => {
       <main id="profile-page">
         <div className="prof-header-cont">
           <div className="profile-header">
-            {user.image && (
-              <Image
-                src={user.picture}
-                alt="User Profile Avatar"
-                width={72}
-                height={72}
-                className="profile-avatar"
-              />
-            )}
+            {/* <Image
+              src={user.picture || 'no pic'}
+              alt="User Profile Avatar"
+              width={72}
+              height={72}
+              className="profile-avatar"
+            /> */}
+
             <div className="header-text">
               <p className="F-name">{user.given_name}</p>
               <p className="L-name">{user.family_name}</p>
@@ -49,13 +51,13 @@ const Profile: React.FC<User> = () => {
         <div className="grid-cont">
           <div className="personal-info grid-item">
             <h6>{user.nickname}</h6>
-            <p className="age">
+            {/* <p className="age">
               <span>Age:</span> {user.age}{' '}
-            </p>
-            <p className="address">
+            </p> */}
+            {/* <p className="address">
               <span>Address: </span>
               {user.address?.country}/{user.address?.address}
-            </p>
+            </p> */}
           </div>
           {/* <div className="education  grid-item">
             <h6>Education</h6>

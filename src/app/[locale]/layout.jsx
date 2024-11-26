@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 
 export default async function RootLayout({ children, params }) {
   const { locale } = params;
+
   // if (!routing.locales.includes(locale)) {
   //   notFound();
   // }
