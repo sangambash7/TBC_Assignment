@@ -10,6 +10,10 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      main: 'rgb(250, 206, 149)',
+      mainDarker: 'rgb(215, 168, 107)',
+    },
     extend: {},
   },
   plugins: [],

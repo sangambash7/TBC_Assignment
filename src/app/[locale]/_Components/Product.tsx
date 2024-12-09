@@ -17,15 +17,18 @@ export default function Product({
   price,
 }: ProductProps) {
   return (
-    <li key={id} className="product">
+    <li
+      key={id}
+      className="product py-[10px] px-[15px] bg-mainDarker border h-[25rem] list-none flex flex-col justify-between transition-transform duration-600 ease-in-out hover:transform: translate-y-2"
+    >
       <h4>{title}</h4>
       <div className="products-description">{description}</div>
-      <img className="product-img" src={image} alt="Product"></img>
-      <div className="product-price">
-        <span className="product-oldPrice">
+      <img className="max-h-[200px] w-auto" src={image} alt="Product"></img>
+      <div>
+        <span className="line-through italic">
           {price} {' $'}{' '}
         </span>
-        <span className="product-newPrice">
+        <span className="text-red-700 text-[20px] font-bold ps-[5px]">
           {(price - price * 0.1903).toFixed(2)} {' $'}{' '}
         </span>
       </div>

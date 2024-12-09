@@ -17,11 +17,11 @@ export default function SortingProducts({ initialProductList }) {
   };
 
   return (
-    <div className="products-sorting">
+    <div className="relative top-0 right-0 lg:absolute">
       <h3>Sort</h3>
 
       <select
-        className="products-sortingMenu"
+        className="bg-[#494646] text-white"
         defaultValue=""
         onChange={(e) => {
           const [sortBy, order] = e.target.value.split('-');

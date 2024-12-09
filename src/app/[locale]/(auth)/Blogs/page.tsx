@@ -1,6 +1,5 @@
 import { getItems } from '../../_Services/getSupabaseData';
 import Link from 'next/link';
-import './Blogs.css';
 
 type localeType = 'en' | 'ge';
 
@@ -15,20 +14,29 @@ export default async function Blogs({ params }: BlogsProps) {
   const blogList = await getItems('Blogs', lang);
 
   return (
-    <main className="blogs">
-      <div className="blogs-header">
-        <h1>List Of Blog Posts</h1>
+    <main className="grid p-[15px] bg-main">
+      <div className="relative">
+        <h1 className="text-4xl grow text-center">List Of Blog Posts</h1>
       </div>
-      <ul>
+      <ul className="flex flex-col items-start list-none">
         {blogList &&
           blogList.map((blog) => (
-            <li key={blog.id}>
+            <li
+              className="flex flex-col border w-full text-start my-2.5 ps-[5px] cursor-pointer"
+              key={blog.id}
+            >
               <h3>{blog.title}</h3>
               <p>{blog.body}</p>
-              <p className="blogs-views">{blog.views} Views</p>
+              <p className="text-gray-500 italic mt-[5px]">
+                {blog.views} Views
+              </p>
 
-              <div className="blog-actions">
-                <Link className="blog-link" href={`Blogs/${blog.id}`}>
+              <div className="flex gap-2 items-center my-[0.3rem]">
+                <Link
+                  className="text-inherit no-underline
+"
+                  href={`Blogs/${blog.id}`}
+                >
                   View Blog
                 </Link>
               </div>

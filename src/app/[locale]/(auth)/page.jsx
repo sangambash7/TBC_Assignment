@@ -5,9 +5,9 @@ import HomeProduct from '../_Components/HomeProducts';
 function App() {
   const t = useTranslations('HomePage');
   return (
-    <main>
-      <h2>{t('title')}</h2>
-      <div className="home-products-container">
+    <main className="bg-main">
+      <h2 className="my-[30px]">{t('title')}</h2>
+      <div className="grid grid-cols-3 gap-[30px] mx-[10px]">
         <HomeProduct
           name="Konica"
           description="Konica Black vintage camera."

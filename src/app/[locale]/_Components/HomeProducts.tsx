@@ -12,10 +12,10 @@ export default function HomeProduct({
   image,
 }: HomeProductProps) {
   return (
-    <div className="home-product">
+    <div className=" flex flex-col items-center border border-blue-800">
       <h4>{name}</h4>
-      <div className="home-products-description">{description}</div>
-      <img className="content-img" src={image} alt="Product"></img>
+      <div>{description}</div>
+      <img className="h-auto w-[200px]" src={image} alt="Product"></img>
       <Button text="Add To Cart" />
     </div>
   );

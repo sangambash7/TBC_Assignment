@@ -36,7 +36,7 @@ export default function SearchProducts() {
   }, [searchText, router]);
 
   return (
-    <div className="products-search">
+    <div className="absolute top-0 left-0 self-center">
       <span>Search: </span>
       <input
         type="text"
